@@ -4,8 +4,6 @@
   "private": true,
   "dependencies": {
     "@astrouxds/design-tokens": "^2.0.0-beta.15",
-    "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
     "@mui/material": "^5.10.6",
     "@types/node": "^16.11.59",
     "@types/react": "^18.0.21",
