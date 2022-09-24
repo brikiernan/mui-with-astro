@@ -1,103 +1,61 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { astroTheme } from 'themes/astro';
-import { astroTokens } from 'themes/astro-tokens';
 import {
+  Box,
   Button,
   CssBaseline,
   List,
   ListItemButton,
   ListItemText,
-  Theme,
   ThemeProvider,
 } from '@mui/material';
 
 const App: React.FC = () => {
-  const [theme, setTheme] = useState<Theme>(astroTheme);
-
-  useEffect(() => console.log(theme), [theme]);
-
-  useLayoutEffect(() => {
-    const textTokens = Object.values(astroTokens.text);
-    textTokens.forEach(textToken => {
-      if (typeof textToken === 'object') return;
-      const token = textToken.split(',')[0].split('(')[1];
-      const cssDecloration = getComputedStyle(document.documentElement);
-
-      // console.log(token);
-
-      switch (token) {
-        case '--color-text-primary': {
-          const color = cssDecloration.getPropertyValue(token).trim();
-          setTheme(prev => ({
-            ...prev,
-            palette: {
-              ...prev.palette,
-              text: {
-                ...prev.palette.text,
-                primary: color,
-              },
-            },
-          }));
-          return;
-        }
-
-        case '--color-text-secondary': {
-          const color = cssDecloration.getPropertyValue(token).trim();
-          setTheme(prev => ({
-            ...prev,
-            palette: {
-              ...prev.palette,
-              text: {
-                ...prev.palette.text,
-                secondary: color,
-              },
-            },
-          }));
-          return;
-        }
-
-        default:
-          return;
-      }
-    });
-  }, []);
+  useEffect(() => console.log(astroTheme), []);
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={astroTheme}>
       <CssBaseline />
-      <Button>Rux Button</Button>
-      <List>
-        <ListItemButton>
-          <ListItemText
-            primary='I am the primary text.'
-            secondary='And I am the secondary text.'
-          />
-        </ListItemButton>
-        <ListItemButton>
-          <ListItemText
-            primary='I am the primary text.'
-            secondary='And I am the secondary text.'
-          />
-        </ListItemButton>
-        <ListItemButton>
-          <ListItemText
-            primary='I am the primary text.'
-            secondary='And I am the secondary text.'
-          />
-        </ListItemButton>
-        <ListItemButton selected>
-          <ListItemText
-            primary='I am the primary text.'
-            secondary='And I am the secondary text.'
-          />
-        </ListItemButton>
-        <ListItemButton>
-          <ListItemText
-            primary='I am the primary text.'
-            secondary='And I am the secondary text.'
-          />
-        </ListItemButton>
-      </List>
+      <Box minHeight='200vh'>
+        <Button>Rux Button</Button>
+        <List
+          sx={{
+            width: theme => theme.spacing(50), // factor of 8 = 25rem || 400px
+            m: ({ astro }) => astro.spacing(4), // factor of 4 =  1rem || 16px
+          }}
+        >
+          <ListItemButton>
+            <ListItemText
+              primary='I am the primary text.'
+              secondary='And I am the secondary text.'
+            />
+          </ListItemButton>
+          <ListItemButton>
+            <ListItemText
+              primary='I am the primary text.'
+              secondary='And I am the secondary text.'
+            />
+          </ListItemButton>
+          <ListItemButton>
+            <ListItemText
+              primary='I am the primary text.'
+              secondary='And I am the secondary text.'
+            />
+          </ListItemButton>
+          <ListItemButton selected>
+            <ListItemText
+              primary='I am the primary text.'
+              secondary='And I am the secondary text.'
+            />
+          </ListItemButton>
+          <ListItemButton>
+            <ListItemText
+              primary='I am the primary text.'
+              secondary='And I am the secondary text.'
+            />
+          </ListItemButton>
+        </List>
+      </Box>
     </ThemeProvider>
   );
 };

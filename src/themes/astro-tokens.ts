@@ -1,44 +1,52 @@
 import { AstroTheme } from '@mui/material';
+import system from '@astrouxds/design-tokens/dist/json/base.system.json';
+import reference from '@astrouxds/design-tokens/dist/json/base.reference.json';
+import { spacing } from './utils';
 
 export const astroTokens: AstroTheme['astro'] = {
   background: {
     base: {
-      default: 'var(--color-background-base-default, #101923)',
-      header: 'var(--color-background-base-header, #172635)',
-      hover: 'var(--color-background-base-hover, #142435)',
-      selected: 'var(--color-background-base-selected, #1c3f5e)',
+      default: system['color-background-base-default'],
+      header: system['color-background-base-header'],
+      hover: system['color-background-base-hover'],
+      selected: system['color-background-base-selected'],
+    },
+    interactive: {
+      default: system['color-background-interactive-default'],
+      hover: system['color-background-interactive-hover'],
     },
     surface: {
-      default: 'var(--color-background-surface-default, #1b2d3e)',
-      header: 'var(--color-background-surface-header, #172635)',
-      hover: 'var(--color-background-surface-hover, #1c3851)',
-      selected: 'var(--color-background-surface-selected, #1c3f5e)',
+      default: system['color-background-surface-default'],
+      header: system['color-background-surface-header'],
+      hover: system['color-background-surface-hover'],
+      selected: system['color-background-surface-selected'],
     },
+  },
+  border: {
     interactive: {
-      default: 'var(--color-background-interactive-default, #4dacff)',
-      hover: 'var(--color-background-interactive-hover, #92cbff)',
+      default: system['color-border-interactive-default'],
+    },
+    width: {
+      sm: reference['border-width-sm'],
     },
   },
-  palette: {
-    grey: {
-      '100': 'var(--color-palette-grey-100, #f5f6f9)',
-    },
-  },
-  radius: {
-    base: 'var(--radius-base, 3px)',
-    circle: 'var(--radius-circle, 50%)',
+  spacing,
+  status: {
+    caution: system['color-status-caution'],
+    normal: system['color-status-normal'],
+    standby: system['color-status-standby'],
   },
   text: {
-    primary: 'var(--color-text-primary, #fffff)',
-    secondary: 'var(--color-text-secondary, #d4d8dd)',
-    placeholder: 'var(--color-text-placeholder, #a4abb6)',
-    inverse: 'var(--color-text-inverse, #080c11)',
+    primary: system['color-text-primary'],
+    secondary: system['color-text-secondary'],
+    placeholder: system['color-text-placeholder'],
+    inverse: system['color-text-inverse'],
     interactive: {
-      default: 'var(--color-text-interactive-default, #4dacff)',
-      hover: 'var(--color-text-interactive-hover, #92cbff)',
+      default: system['color-text-interactive-default'],
+      hover: system['color-text-interactive-hover'],
     },
-    black: 'var(--color-text-black, #000000)',
-    error: 'var(--color-text-error, #ff3838)',
-    white: 'var(--color-text-white, #ffffff)',
+    black: system['color-text-black'],
+    error: system['color-text-error'],
+    white: system['color-text-white'],
   },
 };
