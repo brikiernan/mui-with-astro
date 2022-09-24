@@ -19,6 +19,11 @@ export const astroTokens: AstroTheme['astro'] = {
       hover: 'var(--color-background-interactive-hover, #92cbff)',
     },
   },
+  palette: {
+    grey: {
+      '100': 'var(--color-palette-grey-100, #f5f6f9)',
+    },
+  },
   radius: {
     base: 'var(--radius-base, 3px)',
     circle: 'var(--radius-circle, 50%)',
