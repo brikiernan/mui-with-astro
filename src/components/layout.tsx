@@ -1,24 +1,25 @@
-import { Box, useTheme } from '@mui/material';
-import { RuxButton } from './rux-button';
+import { Box, Stack, Typography, useTheme } from '@mui/material';
+import { RuxButton } from '@astrouxds/react';
 import { RuxList } from './rux-list';
 
 export const Layout: React.FC = () => {
-  // Can use the MUI useTheme hook with the astro theme available
   const theme = useTheme();
-  // console.log('[theme layout]:', theme);
+  // Can use the Mui useTheme hook with the astro theme available
+  // console.log('[theme.astro]:', theme.astro);
 
   return (
-    <Box>
-      <RuxButton />
-      <Box
-        width={theme => theme.spacing(50)} // factor of 8 = 25rem || 400px
-        m={theme => theme.astro.spacing(4)} // factor of 4 =  1rem || 16px
-      >
+    <Stack p={({ astro }) => astro.spacing(4)} spacing={2}>
+      <RuxButton>Astro Button</RuxButton>
+
+      <Box width={({ astro }) => astro.spacing(100)}>
+        <Typography variant='h5' gutterBottom>
+          Astro styled List with List Item Buttons.
+        </Typography>
         <RuxList />
       </Box>
-      <Box sx={{ color: ({ astro }) => astro.text.primary }} component='pre'>
+      <Box color={({ astro }) => astro.color.text.primary} component='pre'>
         {JSON.stringify(theme.palette, null, 2)}
       </Box>
-    </Box>
+    </Stack>
   );
 };

@@ -1,28 +1,19 @@
-import { useEffect, useState } from 'react';
-import { Button } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import { AstroThemeClasses, AstroThemeProvider } from 'astro-mui-theme';
-import { Layout } from 'components';
+import { ownerTheme } from 'themes/owner-theme';
+import { Layout, ThemeSwitch } from 'components';
 
 const App: React.FC = () => {
   const [astroTheme, setAstroTheme] = useState<AstroThemeClasses>('dark-theme');
+  const mode = astroTheme === 'light-theme' ? 'light' : 'dark';
 
   useEffect(() => {
     document.body.className = astroTheme;
   }, [astroTheme]);
 
-  const handleTheme = () => {
-    setAstroTheme(prev => {
-      if (prev === 'dark-theme') {
-        return 'light-theme';
-      }
-
-      return 'dark-theme';
-    });
-  };
-
   return (
-    <AstroThemeProvider mode={astroTheme === 'light-theme' ? 'light' : 'dark'}>
-      <Button onClick={handleTheme}>Mode</Button>
+    <AstroThemeProvider debug mode={mode} theme={ownerTheme(mode)}>
+      <ThemeSwitch {...{ mode, setAstroTheme }} />
       <Layout />
     </AstroThemeProvider>
   );
