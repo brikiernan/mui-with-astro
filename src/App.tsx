@@ -12,7 +12,7 @@ const App: React.FC = () => {
   }, [astroTheme]);
 
   return (
-    <AstroThemeProvider debug mode={mode} theme={ownerTheme(mode)}>
+    <AstroThemeProvider debug={false} mode={mode} theme={ownerTheme(mode)}>
       <ThemeSwitch {...{ mode, setAstroTheme }} />
       <Layout />
     </AstroThemeProvider>
