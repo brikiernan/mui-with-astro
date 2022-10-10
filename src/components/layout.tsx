@@ -11,12 +11,18 @@ export const Layout: React.FC = () => {
     <Stack p={({ astro }) => astro.spacing(4)} spacing={2}>
       <RuxButton>Astro Button</RuxButton>
 
-      <Box width={({ astro }) => astro.spacing(100)}>
+      <Box width={400}>
         <Typography variant='h5' gutterBottom>
           Astro styled List with List Item Buttons.
         </Typography>
         <RuxList />
       </Box>
+
+      <Typography variant='body3'>Body 3</Typography>
+
+      <Typography variant='display1'>Display 1</Typography>
+
+      <Typography variant='display2'>Display 2</Typography>
     </Stack>
   );
 };
