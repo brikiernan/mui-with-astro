@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { AstroThemeClasses, AstroThemeProvider } from 'astro-mui-theme';
+import { AstroThemeClasses, AstroThemeProvider } from '@astrouxds/mui-theme';
 import { ownerTheme } from 'themes/owner-theme';
 import { Layout, ThemeSwitch } from 'components';
 
@@ -12,7 +12,7 @@ const App: React.FC = () => {
   }, [astroTheme]);
 
   return (
-    <AstroThemeProvider debug={false} mode={mode} theme={ownerTheme(mode)}>
+    <AstroThemeProvider debug={true} mode={mode} theme={ownerTheme(mode)}>
       <ThemeSwitch {...{ mode, setAstroTheme }} />
       <Layout />
     </AstroThemeProvider>

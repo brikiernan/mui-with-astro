@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { List, ListItemButton, ListItemText } from '@mui/material';
+import { RuxButton } from '@astrouxds/react';
 
 export const RuxList: React.FC = () => {
   const [selected, setSelected] = useState(3);
@@ -28,6 +29,8 @@ export const RuxList: React.FC = () => {
             primary={`${item.primary} ${i}.`}
             secondary={`${item.secondary} ${i}.`}
           />
+
+          <RuxButton secondary>Button</RuxButton>
         </ListItemButton>
       ))}
     </List>

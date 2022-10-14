@@ -1,6 +1,6 @@
 import { Stack, Typography } from '@mui/material';
 import { RuxButton } from '@astrouxds/react';
-import type { AstroThemeClasses, Mode } from 'astro-mui-theme';
+import type { AstroThemeClasses, Mode } from '@astrouxds/mui-theme';
 
 interface ThemeSwitchProps {
   mode: Mode;
