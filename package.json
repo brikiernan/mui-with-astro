@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@astrouxds/mui-theme": "^0.0.4",
+    "@astrouxds/mui-theme": "^0.0.5",
     "@astrouxds/react": "^7.1.0",
     "@mui/material": "^5.10.6",
     "@types/node": "^16.11.59",
