@@ -2,7 +2,7 @@ import { createTheme, Theme } from '@mui/material';
 import { astroTokens, Mode } from '@astrouxds/mui-theme';
 
 export const ownerTheme = (mode: Mode): Theme => {
-  const astro = astroTokens(mode);
+  const astro = astroTokens({ mode });
 
   return createTheme({
     // Owner cannot override any palette.
@@ -12,23 +12,67 @@ export const ownerTheme = (mode: Mode): Theme => {
         default: 'lightgreen',
       },
     },
-    // Owner can override most most mui components except the ones listed below.
+    // Owner cannot override shape.
+    shape: {
+      // This will not work.
+      borderRadius: 10,
+    },
+    // Owner cannot override any typography.
+    typography: {
+      // This will not work.
+      fontSize: 24,
+    },
+    // Uses the astro spacing formula on all MUI theme spacing
+    spacing: astro.spacing,
     components: {
-      MuiList: {},
-      // List item button is styled with astro styles and cannot be overwritten
-      // with the theme.
-      MuiListItemButton: {
-        // Any style overrides will not work.
+      MuiList: {
         styleOverrides: {
           root: {
-            // If there is an edge case where list item button styles need to be
-            // overwritten the MUI system props and/or the SX prop will work to
-            // override the astro-mui-theme
-            backgroundColor: 'yellow',
+            backgroundColor: astro.color.background.surface.default,
+          },
+        },
+        defaultProps: {
+          disablePadding: true,
+        },
+      },
+      MuiListItemButton: {
+        defaultProps: {
+          disableRipple: true,
+          divider: true,
+        },
+        styleOverrides: {
+          root: {
+            '&:hover': {
+              backgroundColor: astro.color.background.surface.hover,
+            },
+            '&.Mui-selected': {
+              paddingLeft: astro.spacing(3),
+              borderLeftStyle: 'solid',
+              borderLeftWidth: astro.border.width.lg,
+              borderLeftColor: astro.color.border.interactive.default,
+              backgroundColor: astro.color.background.surface.selected,
+            },
+            '&.MuiListItemButton-divider': {
+              borderBottom: 'none',
+              boxShadow: `0 -1px 0 0 ${astro.color.text.inverse}`,
+            },
+            paddingRight: astro.spacing(4),
+            paddingLeft: astro.spacing(4),
           },
         },
       },
-      // Start owner overrides
+      MuiListItemText: {
+        defaultProps: {
+          primaryTypographyProps: {
+            noWrap: true,
+            ...astro.typography.h3,
+          },
+          secondaryTypographyProps: {
+            noWrap: true,
+            ...astro.typography.h6,
+          },
+        },
+      },
       MuiContainer: {
         defaultProps: {
           disableGutters: true,
@@ -43,18 +87,6 @@ export const ownerTheme = (mode: Mode): Theme => {
             '&:hover': {
               textDecoration: 'none',
             },
-          },
-        },
-      },
-      MuiListItemText: {
-        defaultProps: {
-          primaryTypographyProps: {
-            noWrap: true,
-            ...astro.typography.h5,
-          },
-          secondaryTypographyProps: {
-            noWrap: true,
-            ...astro.typography.body2,
           },
         },
       },

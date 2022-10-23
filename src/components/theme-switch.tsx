@@ -22,7 +22,7 @@ export const ThemeSwitch: React.FC<ThemeSwitchProps> = ({
   };
 
   return (
-    <Stack direction='row' alignItems='center' spacing={2} p={2}>
+    <Stack direction='row' alignItems='center' spacing={2} p={4}>
       <RuxButton onClick={handleTheme}>Switch Theme</RuxButton>
       <Typography variant='h3'>
         {mode.charAt(0).toUpperCase() + mode.slice(1)} Theme
