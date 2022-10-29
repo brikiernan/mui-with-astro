@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { RuxStatus } from '@astrouxds/react';
+import { RuxPopUp, RuxStatus } from '@astrouxds/react';
 import {
   Box,
   BoxProps,
   Stack,
   Theme,
-  Tooltip,
+  // Tooltip,
   Typography,
 } from '@mui/material';
 
@@ -31,6 +31,7 @@ export const StatusBar = ({
   const [open, setOpen] = useState(false);
   const onOpen = () => setOpen(true);
   const onClose = () => setOpen(false);
+  const onToggle = () => setOpen(prev => !prev);
 
   useEffect(() => {
     if (isInfoOpen) return onOpen();
@@ -42,14 +43,15 @@ export const StatusBar = ({
     .reduce((prev, current) => prev + current, 0);
 
   return (
-    <Tooltip
-      placement='top'
-      open={open}
-      onOpen={onOpen}
-      onClose={onClose}
-      title={<StatusBarInfo {...{ sections }} />}
-    >
-      <Stack direction='row' width='inherit'>
+    <RuxPopUp placement='top' open={open}>
+      <Stack
+        slot='trigger'
+        onMouseEnter={onToggle}
+        onMouseLeave={onToggle}
+        direction='row'
+        width={468}
+        sx={{ cursor: 'default' }}
+      >
         {sections.map(({ type, value }, i) => (
           <StatusBarSection
             key={type}
@@ -61,7 +63,29 @@ export const StatusBar = ({
           />
         ))}
       </Stack>
-    </Tooltip>
+      <StatusBarInfo sections={sections} />
+    </RuxPopUp>
+
+    // <Tooltip
+    //   placement='top'
+    //   open={open}
+    //   onOpen={onOpen}
+    //   onClose={onClose}
+    //   title={<StatusBarInfo sections={sections} />}
+    // >
+    //   <Stack direction='row' width='inherit'>
+    //     {sections.map(({ type, value }, i) => (
+    //       <StatusBarSection
+    //         key={type}
+    //         status={type}
+    //         width={setPercent(value, max)}
+    //         height={height}
+    //         isBorderLeft={i === 0}
+    //         isBorderRight={i === sections.length - 1}
+    //       />
+    //     ))}
+    //   </Stack>
+    // </Tooltip>
   );
 };
 

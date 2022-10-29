@@ -15,18 +15,18 @@ export const Layout: React.FC = () => {
 
       <Box width={500}>
         <Typography variant='h5' gutterBottom>
-          Astro styled custom StatusBar component.
-        </Typography>
-
-        <StatusBarExample />
-      </Box>
-
-      <Box width={500}>
-        <Typography variant='h5' gutterBottom>
           Astro styled List with List Item Buttons.
         </Typography>
 
         <AstroList />
+      </Box>
+
+      <Box width={500}>
+        <Typography variant='h5' gutterBottom>
+          Astro styled custom StatusBar component.
+        </Typography>
+
+        <StatusBarExample />
       </Box>
 
       <Stack spacing={3}>
