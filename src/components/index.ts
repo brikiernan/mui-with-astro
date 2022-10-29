@@ -1,3 +1,3 @@
 export * from './layout';
-export * from './rux-list';
+export * from './astro-list';
 export * from './theme-switch';

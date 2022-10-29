@@ -9,7 +9,7 @@ export const StatusBarExample = () => {
   const onToggle = () => setOpen(prev => !prev);
 
   return (
-    <Stack direction='row' width={500} alignItems='center' spacing={2}>
+    <Stack direction='row' width='100%' alignItems='center' spacing={2}>
       <RuxIcon
         icon='info'
         size='1.5rem'
@@ -21,9 +21,9 @@ export const StatusBarExample = () => {
         sections={[
           { type: 'standby', value: 8 },
           { type: 'caution', value: 0 },
-          { type: 'critical', value: 2 },
-          { type: 'normal', value: 23 },
-          { type: 'off', value: 1 },
+          { type: 'critical', value: 2, label: 'Emergency' },
+          { type: 'normal', value: 23, label: 'A okay' },
+          { type: 'off', value: 1, label: 'State off' },
           { type: 'serious', value: 4 },
         ]}
       />
