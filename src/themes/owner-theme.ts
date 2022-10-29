@@ -109,7 +109,6 @@ export const ownerTheme = (mode: Mode): Theme => {
             borderStyle: 'solid',
             padding: '0.125rem 0.625rem 0.0625rem',
             fontSize: astro.typography.body3.fontSize,
-            marginTop: '8px !important',
             borderRadius: astro.radius.base,
           },
         },

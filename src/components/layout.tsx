@@ -1,5 +1,7 @@
-import { Box, Stack, Typography } from '@mui/material';
 import { RuxButton } from '@astrouxds/react';
+import { Box, Stack, Typography } from '@mui/material';
+
+import { StatusBarExample } from './status-bar-example';
 import { RuxList } from './rux-list';
 
 export const Layout: React.FC = () => {
@@ -10,6 +12,8 @@ export const Layout: React.FC = () => {
   return (
     <Stack p={({ astro }) => astro.spacing(4)} spacing={4}>
       <RuxButton>Astro Button</RuxButton>
+
+      <StatusBarExample />
 
       <Box width={500}>
         <Typography variant='h5' gutterBottom>
