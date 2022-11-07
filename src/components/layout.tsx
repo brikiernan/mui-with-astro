@@ -26,14 +26,6 @@ export const Layout: React.FC = () => {
         <AstroList />
       </Box>
 
-      <Box width={500}>
-        <Typography variant='h5' gutterBottom>
-          Astro styled custom StatusBar component.
-        </Typography>
-
-        <StatusBarExample />
-      </Box>
-
       <Stack spacing={3}>
         <Typography variant='display1'>Display 1</Typography>
         <Typography variant='display2'>Display 2</Typography>
@@ -47,6 +39,14 @@ export const Layout: React.FC = () => {
         <Typography variant='body2'>Body 2</Typography>
         <Typography variant='body3'>Body 3</Typography>
       </Stack>
+
+      <Box width={500}>
+        <Typography variant='h5' gutterBottom>
+          Astro styled custom StatusBar component.
+        </Typography>
+
+        <StatusBarExample />
+      </Box>
     </Stack>
   );
 };
