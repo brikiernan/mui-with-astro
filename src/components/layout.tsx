@@ -1,8 +1,9 @@
 import { RuxButton } from '@astrouxds/react';
 import { Box, Stack, Typography } from '@mui/material';
 
-import { StatusBarExample } from './status-bar-example';
+import { LoginForm } from './login-form';
 import { AstroList } from './astro-list';
+import { StatusBarExample } from './status-bar-example';
 
 export const Layout: React.FC = () => {
   // Mui useTheme hook can also be used with the astro tokens available
@@ -10,8 +11,12 @@ export const Layout: React.FC = () => {
   // console.log('[theme.astro]:', theme.astro);
 
   return (
-    <Stack p={({ astro }) => astro.spacing(4)} spacing={8}>
+    <Stack p={4} spacing={8}>
       <RuxButton>Astro Button</RuxButton>
+
+      <Box width={500}>
+        <LoginForm />
+      </Box>
 
       <Box width={500}>
         <Typography variant='h5' gutterBottom>

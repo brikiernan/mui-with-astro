@@ -2,7 +2,12 @@ import { createTheme, Theme } from '@mui/material';
 import { astroTokens, Mode } from '@astrouxds/mui-theme';
 
 export const ownerTheme = (mode: Mode): Theme => {
-  const astro = astroTokens({ mode });
+  const {
+    color: { background, border, text },
+    radius,
+    spacing,
+    ...astro
+  } = astroTokens({ mode });
 
   return createTheme({
     // Owner cannot override any palette.
@@ -23,12 +28,12 @@ export const ownerTheme = (mode: Mode): Theme => {
       fontSize: 24,
     },
     // Uses the astro spacing formula on all MUI theme spacing
-    spacing: astro.spacing,
+    spacing,
     components: {
       MuiList: {
         styleOverrides: {
           root: {
-            backgroundColor: astro.color.background.surface.default,
+            backgroundColor: background.surface.default,
           },
         },
         defaultProps: {
@@ -43,21 +48,21 @@ export const ownerTheme = (mode: Mode): Theme => {
         styleOverrides: {
           root: {
             '&:hover': {
-              backgroundColor: astro.color.background.surface.hover,
+              backgroundColor: background.surface.hover,
             },
             '&.Mui-selected': {
-              paddingLeft: astro.spacing(3),
+              paddingLeft: spacing(3),
               borderLeftStyle: 'solid',
               borderLeftWidth: astro.border.width.lg,
-              borderLeftColor: astro.color.border.interactive.default,
-              backgroundColor: astro.color.background.surface.selected,
+              borderLeftColor: border.interactive.default,
+              backgroundColor: background.surface.selected,
             },
             '&.MuiListItemButton-divider': {
               borderBottom: 'none',
-              boxShadow: `0 -1px 0 0 ${astro.color.text.inverse}`,
+              boxShadow: `0 -1px 0 0 ${text.inverse}`,
             },
-            paddingRight: astro.spacing(4),
-            paddingLeft: astro.spacing(4),
+            paddingRight: spacing(4),
+            paddingLeft: spacing(4),
           },
         },
       },
@@ -100,16 +105,21 @@ export const ownerTheme = (mode: Mode): Theme => {
           },
         },
       },
+      MuiTextField: {
+        defaultProps: {
+          InputLabelProps: { shrink: false },
+        },
+      },
       MuiTooltip: {
         styleOverrides: {
           tooltip: {
-            backgroundColor: astro.color.background.base.default,
+            backgroundColor: background.base.default,
             borderWidth: astro.border.width.xs,
-            borderColor: astro.color.border.interactive.default,
+            borderColor: border.interactive.default,
             borderStyle: 'solid',
             padding: '0.125rem 0.625rem 0.0625rem',
             fontSize: astro.typography.body3.fontSize,
-            borderRadius: astro.radius.base,
+            borderRadius: radius.base,
           },
         },
       },

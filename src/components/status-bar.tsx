@@ -1,13 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { RuxPopUp, RuxStatus } from '@astrouxds/react';
-import {
-  Box,
-  BoxProps,
-  Stack,
-  Theme,
-  // Tooltip,
-  Typography,
-} from '@mui/material';
+import { Box, BoxProps, Stack, Theme, Typography } from '@mui/material';
 
 const setPercent = (value: number, max: number) => (value / max) * 100 + '%';
 
@@ -26,28 +19,22 @@ type StatusBarProps = {
 export const StatusBar = ({
   sections,
   height = '0.5rem',
-  isInfoOpen,
+  isInfoOpen = false,
 }: StatusBarProps) => {
   const [open, setOpen] = useState(false);
   const onOpen = () => setOpen(true);
   const onClose = () => setOpen(false);
-  const onToggle = () => setOpen(prev => !prev);
-
-  useEffect(() => {
-    if (isInfoOpen) return onOpen();
-    onClose();
-  }, [isInfoOpen]);
 
   const max = sections
     .map(section => section.value)
     .reduce((prev, current) => prev + current, 0);
 
   return (
-    <RuxPopUp placement='top' open={open}>
+    <RuxPopUp placement='top' open={isInfoOpen || open}>
       <Stack
         slot='trigger'
-        onMouseEnter={onToggle}
-        onMouseLeave={onToggle}
+        onMouseEnter={onOpen}
+        onMouseLeave={onClose}
         direction='row'
         width={468}
         sx={{ cursor: 'default' }}
@@ -65,27 +52,6 @@ export const StatusBar = ({
       </Stack>
       <StatusBarInfo sections={sections} />
     </RuxPopUp>
-
-    // <Tooltip
-    //   placement='top'
-    //   open={open}
-    //   onOpen={onOpen}
-    //   onClose={onClose}
-    //   title={<StatusBarInfo sections={sections} />}
-    // >
-    //   <Stack direction='row' width='inherit'>
-    //     {sections.map(({ type, value }, i) => (
-    //       <StatusBarSection
-    //         key={type}
-    //         status={type}
-    //         width={setPercent(value, max)}
-    //         height={height}
-    //         isBorderLeft={i === 0}
-    //         isBorderRight={i === sections.length - 1}
-    //       />
-    //     ))}
-    //   </Stack>
-    // </Tooltip>
   );
 };
 
