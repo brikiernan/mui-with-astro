@@ -33,7 +33,7 @@ export const Test: React.FC = () => {
     return (
       <div>
         {/* I think it isn't applying the fixed strategy properly */}
-        <RuxPopUp placement='top' strategy='fixed'>
+        <RuxPopUp placement='top'>
           <RuxIcon icon='apps' slot='trigger'></RuxIcon>
           <RuxMenu>
             <RuxMenuItem value='1'>Menu Item 1</RuxMenuItem>
@@ -41,7 +41,6 @@ export const Test: React.FC = () => {
             <RuxMenuItem value='3'>Menu Item 3</RuxMenuItem>
           </RuxMenu>
         </RuxPopUp>
-        <RuxIcon icon='apps' slot='trigger'></RuxIcon>
       </div>
     );
   }
