@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { RuxButton, RuxInput } from '@astrouxds/react';
+import { RuxButton, RuxIcon, RuxInput } from '@astrouxds/react';
 import { Box, Stack, StackProps, TextField, Typography } from '@mui/material';
 
 const loginContainerProps: StackProps = {
@@ -23,6 +23,18 @@ const initialCreds: Creds = {
 const helpText = 'This is the MUI TextField component with "Astrofied" styles.';
 const userErrMsg = 'Username must be at least 3 characters long.';
 const passErrMsg = 'Password must be between 8 and 16 characters long.';
+
+const Error = ({ msg }: { msg: string }) => (
+  <Stack component='span' direction='row' alignItems='center' spacing={2}>
+    <Box
+      component={RuxIcon}
+      icon='warning'
+      size='1.25rem'
+      sx={{ '::part(icon)': { color: ({ astro }) => astro.color.text.error } }}
+    />
+    <Box component='span'>{msg}</Box>
+  </Stack>
+);
 
 export const LoginForm = () => {
   const [creds, setCreds] = useState(initialCreds);
@@ -56,13 +68,14 @@ export const LoginForm = () => {
             // size='large'
             label='Username'
             error={!!ul && userErr}
-            helperText={userErr ? userErrMsg : helpText}
+            helperText={!!ul && userErr ? <Error msg={userErrMsg} /> : helpText}
             value={creds.username}
             onChange={e => handleCreds({ username: e.target.value })}
           />
           <RuxInput
             // size='large'
             label='Username'
+            errorText={!!ul && userErr ? userErrMsg : ''}
             helpText='This is the default RuxInput component.'
             value={creds.username}
             onRuxinput={e => handleCreds({ username: e.target.value })}
@@ -72,7 +85,7 @@ export const LoginForm = () => {
             label='Password'
             error={!!pl && passErr}
             type={isShowPassword ? 'text' : 'password'}
-            helperText={passErr ? passErrMsg : helpText}
+            helperText={!!pl && passErr ? <Error msg={passErrMsg} /> : helpText}
             value={creds.password}
             onChange={e => handleCreds({ password: e.target.value })}
             InputProps={{
@@ -93,6 +106,7 @@ export const LoginForm = () => {
             // size='large'
             label='Password'
             type='password'
+            errorText={!!pl && passErr ? userErrMsg : ''}
             helpText='This is the default RuxInput component.'
             value={creds.password}
             onRuxinput={e => handleCreds({ password: e.target.value })}
