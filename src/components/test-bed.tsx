@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RuxPopUp, RuxButton, RuxIcon, RuxMenu, RuxMenuItem } from '@astrouxds/react';
 import { Box, Stack, Typography, Theme } from '@mui/material';
 //going to try some agGrid stuff
@@ -12,10 +12,20 @@ export const Test: React.FC = () => {
   // const theme = useTheme();
   // console.log('[theme.astro]:', theme.astro);
 
+  //on load add style=fixed to the first rux-pop-up
+
+  function toggleFixed() {
+    const popups = Array.from(document.querySelectorAll('rux-pop-up'));
+    for (const popup of popups) {
+      popup.style.position === 'fixed' ? (popup.style.position = 'relative') : (popup.style.position = 'fixed');
+    }
+  }
+
   function popover() {
     return (
       <div>
-        <RuxPopUp open placement='left'>
+        {/* I think it isn't applying the fixed strategy properly */}
+        <RuxPopUp placement='left' strategy='fixed' open>
           <RuxIcon icon='apps' slot='trigger'></RuxIcon>
           <RuxMenu>
             <RuxMenuItem value='1'>Menu Item 1</RuxMenuItem>
@@ -23,6 +33,7 @@ export const Test: React.FC = () => {
             <RuxMenuItem value='3'>Menu Item 3</RuxMenuItem>
           </RuxMenu>
         </RuxPopUp>
+        <RuxIcon icon='apps' slot='trigger'></RuxIcon>
       </div>
     );
   }
@@ -41,14 +52,7 @@ export const Test: React.FC = () => {
       <div className='ag-theme-material' style={{ width: '100%', height: 300 }}>
         <AgGridReact rowData={rowData} columnDefs={columnDefs}></AgGridReact>
       </div>
-      <RuxPopUp open placement='top'>
-        <RuxIcon icon='apps' slot='trigger'></RuxIcon>
-        <RuxMenu>
-          <RuxMenuItem value='1'>Menu Item 1</RuxMenuItem>
-          <RuxMenuItem value='2'>Menu Item 2</RuxMenuItem>
-          <RuxMenuItem value='3'>Menu Item 3</RuxMenuItem>
-        </RuxMenu>
-      </RuxPopUp>
+      <RuxButton onClick={toggleFixed}>Toggle Fixed Style</RuxButton>
     </Stack>
   );
 };
