@@ -55,7 +55,7 @@ export const Test: React.FC = () => {
   return (
     <Stack p={4} spacing={8} className=''>
       <div className='ag-theme-material' style={{ width: '100%', height: 600 }}>
-        <AgGridReact rowData={rowData} columnDefs={columnDefs}></AgGridReact>
+        <AgGridReact rowData={rowData} columnDefs={columnDefs} suppressRowTransform></AgGridReact>
       </div>
       <RuxButton onClick={toggleFixed}>Toggle Fixed Style</RuxButton>
     </Stack>
