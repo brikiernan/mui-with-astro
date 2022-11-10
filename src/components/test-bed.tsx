@@ -1,11 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  RuxPopUp,
-  RuxButton,
-  RuxIcon,
-  RuxMenu,
-  RuxMenuItem,
-} from '@astrouxds/react';
+import { RuxPopUp, RuxButton, RuxIcon, RuxMenu, RuxMenuItem } from '@astrouxds/react';
 import { Box, Stack, Typography, Theme } from '@mui/material';
 //going to try some agGrid stuff
 import { AgGridReact } from 'ag-grid-react';
@@ -18,14 +12,12 @@ export const Test: React.FC = () => {
   // const theme = useTheme();
   // console.log('[theme.astro]:', theme.astro);
 
-  //on load add style=fixed to the first rux-pop-up
+  //on button click toggle position: fixed on rux-pop-up
 
   function toggleFixed() {
     const popups = Array.from(document.querySelectorAll('rux-pop-up'));
     for (const popup of popups) {
-      popup.style.position === 'fixed'
-        ? (popup.style.position = 'relative')
-        : (popup.style.position = 'fixed');
+      popup.style.position === 'fixed' ? (popup.style.position = 'relative') : (popup.style.position = 'fixed');
     }
   }
 
@@ -58,12 +50,7 @@ export const Test: React.FC = () => {
     { make: 'Porsche', model: 'Boxster', price: 72000 },
   ]);
 
-  const [columnDefs, setColumnDefs] = useState([
-    { field: 'make' },
-    { field: 'model' },
-    { field: 'price' },
-    { field: 'button', cellRenderer: popover },
-  ]);
+  const [columnDefs, setColumnDefs] = useState([{ field: 'make' }, { field: 'model' }, { field: 'price' }, { field: 'button', cellRenderer: popover }]);
 
   return (
     <Stack p={4} spacing={8} className=''>
