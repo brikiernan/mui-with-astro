@@ -3,3 +3,9 @@
 * {
   margin: 0;
 }
+
+.ag-cell-value {
+  overflow: unset;
+}
+
+
