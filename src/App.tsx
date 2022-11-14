@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { AstroThemeClasses, AstroThemeProvider } from '@astrouxds/mui-theme';
 import { ownerTheme } from 'themes/owner-theme';
 import { Layout, ThemeSwitch } from 'components';
-import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
-import Test from 'components/test-bed';
+import { createBrowserRouter, RouterProvider, Link } from 'react-router-dom';
+import AgGridTest from 'components/test-bed';
+import SlotBlink from 'components/slot-blink';
+import Nav from 'components/nav';
 
 const App: React.FC = () => {
   const [astroTheme, setAstroTheme] = useState<AstroThemeClasses>('dark-theme');
@@ -19,8 +21,22 @@ const App: React.FC = () => {
       element: <Layout />,
     },
     {
-      path: '/foo',
-      element: <Test />,
+      path: '/gridtest',
+      element: <AgGridTest />,
+    },
+    {
+      path: '/slotblink',
+      element: <Nav />,
+      children: [
+        {
+          path: 'thing1',
+          element: <AgGridTest />,
+        },
+        {
+          path: 'thing2',
+          element: <Layout />,
+        },
+      ],
     },
   ]);
 
