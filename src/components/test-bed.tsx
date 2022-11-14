@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { RuxPopUp, RuxButton, RuxIcon, RuxMenu, RuxMenuItem } from '@astrouxds/react';
-import { Box, Stack, Typography, Theme } from '@mui/material';
+import { Stack } from '@mui/material';
 //going to try some agGrid stuff
 import { AgGridReact } from 'ag-grid-react';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 
-export const Test: React.FC = () => {
+export const AgGridTest: React.FC = () => {
   // Mui useTheme hook can also be used with the astro tokens available
   // const theme = useTheme();
   // console.log('[theme.astro]:', theme.astro);
@@ -38,7 +38,7 @@ export const Test: React.FC = () => {
   }
 
   //grid stuff
-  const [rowData, setRowData] = useState([
+  const [rowData] = useState([
     { make: 'Toyota', model: 'Celica', price: 35000 },
     { make: 'Ford', model: 'Mondeo', price: 32000 },
     { make: 'Porsche', model: 'Boxster', price: 72000 },
@@ -50,7 +50,7 @@ export const Test: React.FC = () => {
     { make: 'Porsche', model: 'Boxster', price: 72000 },
   ]);
 
-  const [columnDefs, setColumnDefs] = useState([{ field: 'make' }, { field: 'model' }, { field: 'price' }, { field: 'button', cellRenderer: popover }]);
+  const [columnDefs] = useState([{ field: 'make' }, { field: 'model' }, { field: 'price' }, { field: 'button', cellRenderer: popover }]);
 
   return (
     <Stack p={4} spacing={8} className=''>
@@ -62,4 +62,4 @@ export const Test: React.FC = () => {
   );
 };
 
-export default Test;
+export default AgGridTest;
