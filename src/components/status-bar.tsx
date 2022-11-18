@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { RuxPopUp, RuxStatus } from '@astrouxds/react';
-import { Box, BoxProps, Stack, Theme, Typography } from '@mui/material';
+import { Box, BoxProps, Stack, Typography } from '@mui/material';
 
 const setPercent = (value: number, max: number) => (value / max) * 100 + '%';
 
@@ -12,12 +12,14 @@ type StatusBarSectionOption = {
 
 type StatusBarProps = {
   sections: StatusBarSectionOption[];
+  width: string | number;
   height?: string | number;
   isInfoOpen?: boolean;
 };
 
 export const StatusBar = ({
   sections,
+  width,
   height = '0.5rem',
   isInfoOpen = false,
 }: StatusBarProps) => {
@@ -36,17 +38,17 @@ export const StatusBar = ({
         onMouseEnter={onOpen}
         onMouseLeave={onClose}
         direction='row'
-        width={468}
+        width={width}
         sx={{ cursor: 'default' }}
+        borderRadius={({ astro }) => astro.radius.base}
+        overflow='hidden'
       >
-        {sections.map(({ type, value }, i) => (
+        {sections.map(({ type, value }) => (
           <StatusBarSection
             key={type}
             status={type}
             width={setPercent(value, max)}
             height={height}
-            isBorderLeft={i === 0}
-            isBorderRight={i === sections.length - 1}
           />
         ))}
       </Stack>
@@ -55,24 +57,14 @@ export const StatusBar = ({
   );
 };
 
-const setRadius = ({ astro }: Theme) => astro.radius.base;
-
 const statusBarSectionProps = ({
   status,
   width,
   height,
-  isBorderLeft,
-  isBorderRight,
 }: StatusBarSectionProps): BoxProps => ({
   bgcolor: ({ astro }) => astro.color.status[status],
   height,
   width,
-  sx: {
-    borderTopLeftRadius: isBorderLeft ? setRadius : 0,
-    borderBottomLeftRadius: isBorderLeft ? setRadius : 0,
-    borderBottomRightRadius: isBorderRight ? setRadius : 0,
-    borderTopRightRadius: isBorderRight ? setRadius : 0,
-  },
 });
 
 type Status = 'critical' | 'serious' | 'caution' | 'normal' | 'standby' | 'off';
@@ -81,8 +73,6 @@ type StatusBarSectionProps = {
   status: Status;
   width: string;
   height: string | number;
-  isBorderLeft: boolean;
-  isBorderRight: boolean;
 };
 
 const StatusBarSection = (props: StatusBarSectionProps) => (

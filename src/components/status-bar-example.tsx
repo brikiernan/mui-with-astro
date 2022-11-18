@@ -17,6 +17,7 @@ export const StatusBarExample = () => {
         onMouseLeave={onToggle}
       />
       <StatusBar
+        width='28rem'
         isInfoOpen={open}
         sections={[
           { type: 'standby', value: 8 },
